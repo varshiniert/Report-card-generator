@@ -5,15 +5,14 @@ import java.util.List;
 @Document
 public class Term {
     private String termName;
-    private List<Double> examScores; // Three exams per term
-
-    // Weighted Term Score Calculation
+    private List<Double> examScores; 
+    
     public double getTermScore() {
         if (examScores == null || examScores.size() < 3) return 0.0;
         return (0.1 * examScores.get(0)) + (0.1 * examScores.get(1)) + (0.8 * examScores.get(2));
     }
 
-    // Getters & Setters
+    
     public String getTermName() { return termName; }
     public void setTermName(String termName) { this.termName = termName; }
 

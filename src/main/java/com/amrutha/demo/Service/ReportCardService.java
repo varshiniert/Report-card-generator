@@ -19,7 +19,7 @@ public class ReportCardService {
         Map<String, Map<String, List<Exam>>> groupedExams = new HashMap<>();
         for (Exam exam : exams) {
             String subject = exam.getSubject();
-            String term = getTermFromExam(exam); // Dynamically assign term
+            String term = getTermFromExam(exam); 
             groupedExams.putIfAbsent(subject, new HashMap<>());
             groupedExams.get(subject).putIfAbsent(term, new ArrayList<>());
             groupedExams.get(subject).get(term).add(exam);
@@ -44,12 +44,12 @@ public class ReportCardService {
     }
 
     private String getTermFromExam(Exam exam) {
-        int examNumber = Integer.parseInt(exam.getExamId()); // Ensure Exam has a unique ID
+        int examNumber = Integer.parseInt(exam.getExamId()); 
         return (examNumber <= 3) ? "Term 1" : "Term 2";
     }
 
     private double calculateWeightedTermScore(List<Exam> exams) {
-        if (exams.size() < 3) return 0.0; // Ensure at least three exams exist
+        if (exams.size() < 3) return 0.0; 
     
         return (0.1 * exams.get(0).getScore()) + 
                (0.1 * exams.get(1).getScore()) + 
