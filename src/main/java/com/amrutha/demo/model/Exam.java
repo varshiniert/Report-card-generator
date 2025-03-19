@@ -17,14 +17,14 @@ public class Exam {
     private String id;
     private String studentId;
     private String term;
-    private String subject;  // ✅ Added subject field
+    private String subject;  
     private double exam1;
     private double exam2;
     private double exam3;
     private double score; 
     private String examId;
     
-    // Constructor that calculates score
+    
     public Exam(String studentId, String term, String subject, double exam1, double exam2, double exam3, String examId) {
         this.studentId = studentId;
         this.term = term;
@@ -33,15 +33,13 @@ public class Exam {
         this.exam2 = exam2;
         this.exam3 = exam3;
         this.examId = examId;
-        this.score = calculateScore();  // Ensure score is calculated on object creation
+        this.score = calculateScore();  
     }
 
-    // Method to calculate score
     public double calculateScore() {
         return (0.1 * exam1) + (0.1 * exam2) + (0.8 * exam3);
     }
 
-    // Update the score whenever exam values change
     public void setExam1(double exam1) {
         this.exam1 = exam1;
         this.score = calculateScore();

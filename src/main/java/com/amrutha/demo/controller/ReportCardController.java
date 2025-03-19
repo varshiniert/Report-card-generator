@@ -26,14 +26,12 @@ public class ReportCardController {
     @Autowired
     private StudentRepository studentRepository;
 
-    // ✅ 1️⃣ POST: Add a New Student
     @PostMapping
     public ResponseEntity<Student> addStudent(@RequestBody Student student) {
         Student savedStudent = studentRepository.save(student);
         return ResponseEntity.ok(savedStudent);
     }
 
-    // ✅ 2️⃣ POST: Add an Exam Score for a Student
     @PostMapping("/{studentId}/exams")
     public ResponseEntity<Exam> addExam(@PathVariable String studentId, @RequestBody Exam exam) {
         exam.setStudentId(studentId);
@@ -42,15 +40,12 @@ public class ReportCardController {
         return ResponseEntity.ok(savedExam);
     }
 
-    // ✅ 3️⃣ GET: Get Report Card for a Student
-    // ✅ 3️⃣ GET: Get Report Card for a Student
 @GetMapping("/{studentId}/report-card")
 public ResponseEntity<Map<String, Map<String, Double>>> getReportCard(@PathVariable String studentId) {
     return ResponseEntity.ok(service.generateReportCard(studentId));
 }
 
 
-    // ✅ 4️⃣ PUT: Update an Exam Score
     @PutMapping("/{studentId}/exams/{examId}")
     public ResponseEntity<Exam> updateExam(@PathVariable String studentId, 
                                            @PathVariable String examId, 
@@ -69,7 +64,6 @@ public ResponseEntity<Map<String, Map<String, Double>>> getReportCard(@PathVaria
         }
     }
 
-    // ✅ 5️⃣ DELETE: Remove an Exam Record
     @DeleteMapping("/{studentId}/exams/{examId}")
     public ResponseEntity<Void> deleteExam(@PathVariable String studentId, @PathVariable String examId) {
         if (examRepository.existsById(examId)) {
@@ -80,7 +74,6 @@ public ResponseEntity<Map<String, Map<String, Double>>> getReportCard(@PathVaria
         }
     }
 
-    // ✅ 6️⃣ GET: Get All Exams for a Student
     @GetMapping("/{studentId}/exams")
     public ResponseEntity<List<Exam>> getAllExams(@PathVariable String studentId) {
         List<Exam> exams = examRepository.findByStudentId(studentId);
